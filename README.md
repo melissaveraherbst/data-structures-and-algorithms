@@ -38,3 +38,7 @@ A collection of course work and documentation from doing the JavaScript Algorith
 - [Dynamic Programming]()
 
 ## 📘 Useful Resources
+
+Sorting Algorithms  
+* [Toptal](https://www.toptal.com/developers/sorting-algorithms) - Sorting algorithms animations
+* [VisuAlgo](https://visualgo.net/en) - Visualising data structures and algorithms through animation
