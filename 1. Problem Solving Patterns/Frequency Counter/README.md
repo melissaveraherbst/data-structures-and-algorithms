@@ -11,4 +11,4 @@ The frequency counter pattern is best applied to situations where we are compari
 * Given two strings, determine if the second string is an anagram of the first.
 * Determine if there are duplicates in a set of data.
 
-The advantage is that it will usually have big O of O(n) time complexity compared to other approaches, such as a nested loop solution, that will have big O of O(n²). */
+The advantage is that it will usually have big O of O(n) time complexity compared to other approaches, such as a nested loop solution, that will have big O of O(n²).
