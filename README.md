@@ -9,3 +9,32 @@ A collection of course work and documentation from doing the JavaScript Algorith
 ---
 
 </div>
+
+## 📃 Table of Contents
+- [Problem Solving Patterns](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns)
+  * [Multiple Pointers]()     
+  * [Sliding Window]()     
+  * [Frequency Counter]() 
+  * [Divide & Conquer]()
+- [Recursive Functions]()
+- [Pattern Search Algorithms]()
+  * [Linear Search]()
+  * [Binary Search]()
+  * [String Pattern Search]()
+- [Sorting Algorithms]()
+  * [Bubble Sort]()
+  * [Insertion Sort]()
+  * [Merge Sort]()
+  * [Quick Sort]()
+  * [Radix Sort]()
+  * [Selection Sort]()
+- [Data Structures]()
+  * [Linked Lists]()
+  * [Stacks and Queues]()
+  * [Trees]()
+  * [Hash Tables]()
+  * [Graphs]()
+- [Dijkstra Algorithm]()
+- [Dynamic Programming]()
+
+## 📘 Useful Resources
