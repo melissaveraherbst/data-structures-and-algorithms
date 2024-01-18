@@ -43,5 +43,5 @@
    - **Memory Usage:** Depending on the size of the dataset and the range of possible elements, the memory usage can be a concern.
    - **Hashing Collisions:** If using a hash-based data structure, collisions may occur, requiring additional handling.
 
-## Summary
+### Summary
 The Frequency Counter Technique is a powerful tool for solving problems related to counting and comparing element frequencies in datasets. Its efficiency and simplicity make it a valuable approach in various programming and algorithmic contexts.
