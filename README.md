@@ -12,9 +12,9 @@ A collection of course work and documentation from doing the JavaScript Algorith
 
 ## 📃 Table of Contents
 - [Problem Solving Patterns](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns)
-  * [Multiple Pointers]()     
-  * [Sliding Window]()     
-  * [Frequency Counter]() 
+  * [Frequency Counter](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Frequency%20Counter) 
+  * [Multiple Pointers](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Multiple%20Pointers)     
+  * [Sliding Window](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Sliding%20Window)     
   * [Divide & Conquer]()
 - [Recursive Functions]()
 - [Pattern Search Algorithms]()
