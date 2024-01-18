@@ -1,10 +1,12 @@
-# JavaScript Data Structures and Algorithms
+<div align=center>
+  
+## The Sliding Window Problem Solving Technique
 
-## Problem Solving Patterns: The Sliding Window Technique
+</div>
 
 The Sliding Window technique is a powerful algorithmic approach used to efficiently solve a variety of problems in computer science and programming. It involves maintaining a set of elements in a "window" or a subarray and updating it dynamically as you move through the input array or sequence. This approach is particularly useful when dealing with problems that require finding a subarray, substring, or some other substructure that satisfies certain conditions.
 
-### Identifying Problems for Sliding Window Technique
+### Identifying Problems for the Sliding Window Technique
 
 1. Sequential Data: Sliding Window is often used with problems that involve sequences, such as arrays or strings.
 2. Optimization Problems: It's commonly employed to optimize problems that involve finding a maximum, minimum, or some other optimal value.
@@ -15,22 +17,16 @@ The Sliding Window technique is a powerful algorithmic approach used to efficien
 
 1. Define the Window:  
 Establish the window's boundaries, typically with two pointers (start and end) that define the range of elements in the window.
-
 2. Initial Processing:  
 Handle the initial window setup, calculating any necessary values or conditions within the defined window.
-
 3. Iterate through the Sequence:  
 Move the window through the sequence one step at a time, adjusting the pointers accordingly.
-
 4. Update the Window:  
 As the window moves, update the elements within the window and recalculate any necessary values.
-
 5. Maintain Invariants:  
 Ensure that any invariants (conditions that must always be true) are maintained during each step.
-
 6. Track the Solution:  
 Keep track of the best or desired solution as the window progresses.
-
 7. Terminate:  
 Continue the process until the window reaches the end of the sequence.
 
