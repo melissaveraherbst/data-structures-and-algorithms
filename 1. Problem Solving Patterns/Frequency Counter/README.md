@@ -25,20 +25,20 @@
        return counter
    ```
 
-## Use Cases
+### Use Cases
 
    - **Anagram Detection:** Determine if two strings are anagrams by comparing the frequency of characters in each string.
    - **Finding Duplicates:** Identify and remove duplicates from a list or array.
    - **Checking Permutations:** Determine if one string is a permutation of another by comparing character frequencies.
    - **Comparing Arrays/Lists:** Check if two arrays or lists have the same frequency of elements.
 
-## Advantages
+### Advantages
 
    - **Efficiency:** The Frequency Counter Technique often provides a more efficient solution compared to brute force methods.
    - **Simplicity:** The approach is generally straightforward and easy to implement.
    - **Scalability:** It can scale well with larger datasets.
 
-## Limitations
+### Limitations
 
    - **Memory Usage:** Depending on the size of the dataset and the range of possible elements, the memory usage can be a concern.
    - **Hashing Collisions:** If using a hash-based data structure, collisions may occur, requiring additional handling.
