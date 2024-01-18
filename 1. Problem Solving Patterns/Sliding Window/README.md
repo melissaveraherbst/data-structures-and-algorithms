@@ -1,4 +1,4 @@
-# The Sliding Window Problem Solving Technique
+# Sliding Window
 
 The Sliding Window technique is a powerful algorithmic approach used to efficiently solve a variety of problems in computer science and programming. It involves maintaining a set of elements in a "window" or a subarray and updating it dynamically as you move through the input array or sequence. This approach is particularly useful when dealing with problems that require finding a subarray, substring, or some other substructure that satisfies certain conditions.
 
