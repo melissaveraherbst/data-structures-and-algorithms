@@ -4,7 +4,7 @@
 
 # JavaScript Data Structures and Algorithms
 
-A collection of course work and documentation from doing the JavaScript Algorithms and Data Structures Masterclass course by Colt Steele on Udemy
+A collection of course work and documentation from doing the [JavaScript Algorithms and Data Structures Masterclass](https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass/) course by Colt Steele on Udemy
 
 ---
 
@@ -26,11 +26,11 @@ A collection of course work and documentation from doing the JavaScript Algorith
 
 - [Sorting Algorithms]()
   * [Bubble Sort]()
+  * [Selection Sort]()
   * [Insertion Sort]()
   * [Merge Sort]()
   * [Quick Sort]()
   * [Radix Sort]()
-  * [Selection Sort]()
 
 - [Data Structures]()
   * [Linked Lists]()
