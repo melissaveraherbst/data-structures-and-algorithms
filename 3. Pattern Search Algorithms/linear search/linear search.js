@@ -10,13 +10,12 @@
 // 3) If found, return the index at which the element is found or return -1 if it is not found.
 
 const linearSearch = (arr, val) => {
-	let found = -1;
-
 	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] === val) return found = i;
+		if (arr[i] === val) return i;
 	}
-	
-	return found;
-} 
 
-linearSearch([55, 125, 8, 122, 2, 36, 100], 222);
+	return -1;
+};
+
+const result = linearSearch([55, 125, 8, 122, 2, 36, 100], 122);
+console.log(result);
