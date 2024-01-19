@@ -45,32 +45,39 @@ The Sliding Window technique is versatile and can be applied to various problem 
 1. **Fixed Size Subarray Problems:**
    - Finding the maximum or minimum sum subarray of a fixed size.
    - Identifying the first subarray of a given sum or product
+
 2. **Variable Size Subarray Problems:**
    - Finding the longest subarray with a sum less than or equal to a given value.
    - Finding the smallest subarray with a sum greater than or equal to a given value.
+
 3. **Counting Problems:**
    - Counting the number of subarrays with a specific property or condition.
+
 4. **String Manipulation:**
    - Finding the longest substring with at most K distinct characters.
    - Checking if a string has a substring with all characters appearing exactly K times.
+
 5. **Optimization Problems:**
    - Optimizing a function over a sliding window, such as maximizing the average of a subarray.
+
 6. **Time Series Data:**
    - Analyzing time series data, like finding the moving average or detecting anomalies.
+
 7. **Two-Pointer Problems:**
    - Solving problems where two pointers are used to define a range or window.
+
 8. **Consecutive Elements Problems:**
    - Detecting patterns or properties that involve consecutive elements in an array or sequence.
 
 ### Advantages
 
-* Sliding Window is often more efficient than brute force approaches.
-* It reduces the time complexity by avoiding redundant computations.
-* It's a space-efficient approach as it only requires constant space.
+- Sliding Window is often more efficient than brute force approaches.
+- It reduces the time complexity by avoiding redundant computations.
+- It's a space-efficient approach as it only requires constant space.
 
 ### Disadvantages
 
-* Not applicable to all types of problems.
-* Requires a clear understanding of the problem and conditions for maintaining the window.
-* In summary, the Sliding Window technique is a valuable tool for solving problems efficiently, especially those involving sequences and optimization.
-* Identifying the right problems and following the basic steps can help you apply this technique effectively in your programming challenges.
+- Not applicable to all types of problems.
+- Requires a clear understanding of the problem and conditions for maintaining the window.
+- In summary, the Sliding Window technique is a valuable tool for solving problems efficiently, especially those involving sequences and optimization.
+- Identifying the right problems and following the basic steps can help you apply this technique effectively in your programming challenges.

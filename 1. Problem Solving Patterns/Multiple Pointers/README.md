@@ -46,5 +46,6 @@ print(result)  # Output: [5, 15]
 - **Palindrome Check:** Checking if a sequence is a palindrome.
 - **Intersection or Union:** Identifying common or unique elements between two sorted arrays.
 
-### Important:
+### Important
+
 The effectiveness of the Multiple Pointers pattern relies on the SORTED nature of the data structure, as it allows for efficient movement of pointers based on comparisons.
