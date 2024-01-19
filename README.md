@@ -42,3 +42,6 @@ A collection of course work and documentation from doing the JavaScript Algorith
 Sorting Algorithms  
 * [Toptal](https://www.toptal.com/developers/sorting-algorithms) - Sorting algorithms animations
 * [VisuAlgo](https://visualgo.net/en) - Visualising data structures and algorithms through animation
+
+Other:
+[Big-O-Notation Cheatsheet](https://www.bigocheatsheet.com/)
