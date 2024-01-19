@@ -16,11 +16,14 @@ A collection of course work and documentation from doing the JavaScript Algorith
   * [Multiple Pointers](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Multiple%20Pointers)     
   * [Sliding Window](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Sliding%20Window)     
   * [Divide & Conquer]()
-- [Recursive Functions]()
+
+- [Recursive Functions](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/2.%20Recursive%20Functions)
+
 - [Pattern Search Algorithms]()
-  * [Linear Search]()
-  * [Binary Search]()
-  * [String Pattern Search]()
+  * [Linear Search](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/3.%20Pattern%20Search%20Algorithms/linear%20search)
+  * [Binary Search](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/3.%20Pattern%20Search%20Algorithms/binary%20search)
+  * [String Pattern Search](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/3.%20Pattern%20Search%20Algorithms/string%20pattern%20search)
+
 - [Sorting Algorithms]()
   * [Bubble Sort]()
   * [Insertion Sort]()
@@ -28,12 +31,14 @@ A collection of course work and documentation from doing the JavaScript Algorith
   * [Quick Sort]()
   * [Radix Sort]()
   * [Selection Sort]()
+
 - [Data Structures]()
   * [Linked Lists]()
   * [Stacks and Queues]()
   * [Trees]()
   * [Hash Tables]()
   * [Graphs]()
+
 - [Dijkstra Algorithm]()
 - [Dynamic Programming]()
 
