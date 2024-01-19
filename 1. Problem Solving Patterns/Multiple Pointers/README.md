@@ -47,4 +47,4 @@ print(result)  # Output: [5, 15]
 - **Intersection or Union:** Identifying common or unique elements between two sorted arrays.
 
 ### Important:
-The effectiveness of the Multiple Pointers technique often relies on the sorted nature of the data structure, as it allows for efficient movement of pointers based on comparisons.
+The effectiveness of the Multiple Pointers pattern relies on the SORTED nature of the data structure, as it allows for efficient movement of pointers based on comparisons.
