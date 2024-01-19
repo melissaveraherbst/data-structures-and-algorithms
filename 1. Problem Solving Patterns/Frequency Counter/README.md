@@ -1,6 +1,6 @@
 # Frequency Counter  
 
-### Identification of Applicable Problems
+### Identifying Applicable Problems
 
    - **Counting Elements:** Problems that involve counting occurrences of individual elements in a dataset.
    - **Comparing Patterns:** Tasks that require comparing patterns or frequencies of elements in two datasets.
