@@ -1,15 +1,15 @@
 # Sliding Window
 
-The Sliding Window technique is a powerful algorithmic approach used to efficiently solve a variety of problems in computer science and programming. It involves maintaining a set of elements in a "window" or a subarray and updating it dynamically as you move through the input array or sequence. This approach is particularly useful when dealing with problems that require finding a subarray, substring, or some other substructure that satisfies certain conditions.
+The Sliding Window pattern involves maintaining a set of elements in a "window" or a subarray and updating it dynamically as you move through the input array or sequence. This approach is particularly useful when dealing with problems that require finding a subarray, substring, or some other substructure that satisfies certain conditions.
 
-### Identifying Problems for the Sliding Window Technique
+### Identifying Applicable Problems
 
-1. Sequential Data: Sliding Window is often used with problems that involve sequences, such as arrays or strings.
-2. Optimization Problems: It's commonly employed to optimize problems that involve finding a maximum, minimum, or some other optimal value.
-3. Linear Time Complexity: Problems that can be solved in linear time, or more efficiently than brute force, are good candidates.
-4. Consecutive Elements: If the problem requires finding a subarray or substring with a specific property, Sliding Window is a good fit.
+1. **Sequential Data:** Sliding Window is often used with problems that involve sequences, such as arrays or strings.
+2. **Optimization Problems:** It's commonly employed to optimize problems that involve finding a maximum, minimum, or some other optimal value.
+3. **Linear Time Complexity:** Problems that can be solved in linear time, or more efficiently than brute force, are good candidates.
+4. **Consecutive Elements:** If the problem requires finding a subarray or substring with a specific property, Sliding Window is a good fit.
 
-### Basic Steps for Sliding Window Technique
+### Basic Steps
 
 1. **Define the Window**  
 Establish the window's boundaries, typically with two pointers (start and end) that define the range of elements in the window.
