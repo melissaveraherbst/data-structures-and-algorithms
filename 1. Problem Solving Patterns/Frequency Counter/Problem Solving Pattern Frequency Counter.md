@@ -1,8 +1,8 @@
-In this article, we will write a function **frequencyCounter**, which accepts two arrays. The function should return true if every value in the array has its corresponding value squared in the second array. The frequency values must be the same.
-
-## Why use a frequency counter pattern?
+# Why use a frequency counter pattern?
 
 The advantage is that it will usually have big O of O(n) time complexity compared to other approaches, such as a nested loop solution, that will have big O of O(n²).
+
+In this article, we will write a function which accepts two arrays. The function should return true if every value in the array has its corresponding value squared in the second array. The frequency values must be the same.
 
 Solution using nested loops:
 
