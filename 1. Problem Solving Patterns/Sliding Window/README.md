@@ -38,6 +38,30 @@ Let's consider a classic problem: "Find the maximum sum subarray of a fixed size
 6. Keep track of the maximum sum encountered.
 7. Continue until the end of the array.
 
+### Use Cases
+
+The Sliding Window technique is versatile and can be applied to various problem domains. Here are some common use cases where the Sliding Window technique is particularly effective:
+
+1. **Fixed Size Subarray Problems:**
+   - Finding the maximum or minimum sum subarray of a fixed size.
+   - Identifying the first subarray of a given sum or product
+2. **Variable Size Subarray Problems:**
+   - Finding the longest subarray with a sum less than or equal to a given value.
+   - Finding the smallest subarray with a sum greater than or equal to a given value.
+3. **Counting Problems:**
+   - Counting the number of subarrays with a specific property or condition.
+4. **String Manipulation:**
+   - Finding the longest substring with at most K distinct characters.
+   - Checking if a string has a substring with all characters appearing exactly K times.
+5. **Optimization Problems:**
+   - Optimizing a function over a sliding window, such as maximizing the average of a subarray.
+6. **Time Series Data:**
+   - Analyzing time series data, like finding the moving average or detecting anomalies.
+7. **Two-Pointer Problems:**
+   - Solving problems where two pointers are used to define a range or window.
+8. **Consecutive Elements Problems:**
+   - Detecting patterns or properties that involve consecutive elements in an array or sequence.
+
 ### Advantages
 
 * Sliding Window is often more efficient than brute force approaches.
