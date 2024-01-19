@@ -15,7 +15,7 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Frequency Counter](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Frequency%20Counter) 
   * [Multiple Pointers](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Multiple%20Pointers)     
   * [Sliding Window](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Sliding%20Window)     
-  * [Divide & Conquer]()
+  * [Divide & Conquer](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Divide%20%26%20Conquer)
 
 - [Recursive Functions](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/2.%20Recursive%20Functions)
 
