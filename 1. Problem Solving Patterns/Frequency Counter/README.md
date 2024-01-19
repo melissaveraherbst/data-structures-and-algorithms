@@ -31,6 +31,8 @@
 - **Finding Duplicates:** Identify and remove duplicates from a list or array.
 - **Checking Permutations:** Determine if one string is a permutation of another by comparing character frequencies.
 - **Comparing Arrays/Lists:** Check if two arrays or lists have the same frequency of elements.
+- **Frequency Counting:** Count the occurrences of each element in an array or character in a string.
+- **Word Frequency in Text:** Count the frequency of each word in a given text.
 
 ### Advantages
 
