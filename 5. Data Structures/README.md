@@ -1,4 +1,4 @@
 Notes on Data Structures
 
-COURSE
+**COURSE**  
 JavaScript Algorithms and Data Structures Masterclass from Udemy by Colt Steele
