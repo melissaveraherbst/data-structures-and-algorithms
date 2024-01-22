@@ -1,3 +1,0 @@
-Prerequisites:
-Graph Data Structure
-Priority Heap Data Structure
