@@ -39,15 +39,21 @@ console.log(fib(30)); // 45+ will take +- 10 secs and more to compute
 console.timeEnd("recursive fib function");
 ```
 
-![Fibonacci sequence illustration](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/01703c63-c59d-49cf-aace-824e9b012aed)
+### Recursive Solution with Memoization
+
+Time Complexity of O(n) (👍🏼 GOOD!)
+
+<br>
+
+<div align=center>
+<img src="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/4aa1fdc9-171b-43a7-9eca-aa2a749b8b95" alt="Fibonacci Sequence Illustration" width=75%>
+</div>
+
+<br>
 
 To calculate fib(6) we need to make a lot of expensive repeated function calls (colored in red). These extra calls increase the computation time.
 
 To make our code more efficient, we add an array (hash table) cache to store the calculated results. At each recursion, we first check if the result has already been calculated. If yes, we return the cached result, cache[n]. If no, we calculate it, save it to our cache array and finally return it.
-
-### Recursive Solution with Memoization
-
-Time Complexity of O(n) (👍🏼 GOOD!)
 
 ```JavaScript
 let cache = [];
