@@ -15,7 +15,7 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Frequency Counter](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Frequency%20Counter) 
   * [Multiple Pointers](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Multiple%20Pointers)     
   * [Sliding Window](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Sliding%20Window)     
-  * [Divide & Conquer]()
+  * [Divide & Conquer](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/1.%20Problem%20Solving%20Patterns/Divide%20%26%20Conquer)
 
 - [Recursive Functions](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/2.%20Recursive%20Functions)
 
@@ -24,13 +24,13 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Binary Search](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/3.%20Pattern%20Search%20Algorithms/binary%20search)
   * [String Pattern Search](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/3.%20Pattern%20Search%20Algorithms/string%20pattern%20search)
 
-- [Sorting Algorithms]()
-  * [Bubble Sort]()
-  * [Selection Sort]()
-  * [Insertion Sort]()
-  * [Merge Sort]()
-  * [Quick Sort]()
-  * [Radix Sort]()
+- [Sorting Algorithms](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms)
+  * [Bubble Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Bubble%20Sort)
+  * [Selection Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Selection%20Sort)
+  * [Insertion Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Insertion%20Sort)
+  * [Merge Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Merge%20Sort)
+  * [Quick Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Quick%20Sort)
+  * [Radix Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Radix%20Sort)
 
 - [Data Structures]()
   * [Linked Lists]()
@@ -40,6 +40,7 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Graphs]()
 
 - [Dijkstra Algorithm]()
+ 
 - [Dynamic Programming]()
 
 ## 📘 Useful Resources

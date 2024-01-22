@@ -2,7 +2,11 @@
 
 Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
 
-**Key Steps:**
+### Identifying Problems Suitable for Bubble Sort
+
+Bubble Sort is suitable for small datasets or educational purposes due to its simplicity. It is not efficient for large datasets because of its quadratic time complexity. Use cases include scenarios where simplicity and ease of understanding are more important than efficiency.
+
+### Basic Steps to Perform Bubble Sort
 
 1. **Repeatedly Traverse the List:**
    - Start from the beginning of the list.
@@ -11,17 +15,6 @@ Bubble Sort is a simple sorting algorithm that repeatedly steps through the list
 
 2. **Repeat Until Sorted:**
    - Continue these steps until no swaps are needed (i.e., the list is sorted).
-
-### Identifying Problems Suitable for Bubble Sort
-
-Bubble Sort is suitable for small datasets or educational purposes due to its simplicity. It is not efficient for large datasets because of its quadratic time complexity. Use cases include scenarios where simplicity and ease of understanding are more important than efficiency.
-
-### Basic Steps to Perform Bubble Sort
-
-1. Initialize a loop that iterates through the array.
-2. Inside the loop, initialize another loop for the comparisons.
-3. Compare adjacent elements and swap if they are in the wrong order.
-4. Continue until the entire array is sorted, and no swaps are needed.
 
 ### Possible Use Cases
 
