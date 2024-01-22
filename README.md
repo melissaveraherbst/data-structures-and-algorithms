@@ -39,7 +39,7 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Hash Tables](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/4.%20Hash%20Tables)
   * [Graphs](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/5.%20Graphs)
 
-- [Dijkstra Algorithm](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/6.%20Dijkstra%20Algorithm)
+- [Dijkstra's Algorithm](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/6.%20Dijkstra%20Algorithm)
  
 - [Dynamic Programming](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/7.%20Dynamic%20Programming)
 
