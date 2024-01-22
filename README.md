@@ -41,7 +41,7 @@ A collection of course work and documentation from doing the [JavaScript Algorit
 
 - [Dijkstra Algorithm](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/6.%20Dijkstra%20Algorithm)
  
-- [Dynamic Programming]()
+- [Dynamic Programming](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/7.%20Dynamic%20Programming)
 
 ## 📘 Useful Resources
 
