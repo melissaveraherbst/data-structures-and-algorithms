@@ -1,4 +1,4 @@
 Notes on Dijkstra's Algorithm
 
-**COURSE**
+**COURSE**  
 JavaScript Algorithms and Data Structures Masterclass from Udemy by Colt Steele
