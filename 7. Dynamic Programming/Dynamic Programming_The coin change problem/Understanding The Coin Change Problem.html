@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Understanding The Coin Change Problem With Dynamic Programming.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="understanding-the-coin-change-problem-with-dynamic-programming">Understanding The Coin Change Problem With Dynamic Programming</h1>
+<p><a href="https://www.geeksforgeeks.org/understanding-the-coin-change-problem-with-dynamic-programming/">https://www.geeksforgeeks.org/understanding-the-coin-change-problem-with-dynamic-programming/</a></p>
+<p>Last Updated : 27 May, 2021</p>
+<p>The <strong>Coin Change Problem</strong> is considered by many to be essential to understanding the paradigm of programming known
+as <strong><a href="https://en.wikipedia.org/wiki/Dynamic_programming">Dynamic Programming</a></strong>. The two often are always paired
+together because the coin change problem encompass the concepts of dynamic programming. For those who don’t know about
+dynamic programming it is according to Wikipedia:</p>
+<blockquote>
+<p>“both a mathematical optimization method and a computer programming method … it refers to simplifying a complicated
+problem by breaking it down into simpler sub-problems”.</p>
+</blockquote>
+<p>In other words, dynamic problem is a method of programming that is used to simplify a problem into smaller pieces. For
+example if you were asked simply what is 3 _ 89? you perhaps would not know the answer off of your head as you probably
+know what is 2 _ 2. However, if you knew what was 3 _ 88 (264) then certainly you can deduce 3 _ 89. All you would have
+to do is add 3 to the previous multiple and you would arrive at the answer of 267. Thus, that is a very simple
+explanation of what is dynamic programming and perhaps you can now see how it can be used to solve large time complexity
+problems effectively.</p>
+<p>By keeping the above definition of dynamic programming in mind, we can now move forward to the <strong>Coin Change Problem</strong>.
+The following is an example of one of the many variations of the coin change problem. Given a list of coins i.e <strong>1
+cents, 5 cents and 10 cents</strong>, can you determine the total number of combinations of the coins in the given list to make
+up the number <strong>N</strong>?<strong>Example 1</strong>: Suppose you are given the coins 1 cent, 5 cents, and 10 cents with N = 8 cents, what
+are the total number of combinations of the coins you can arrange to obtain 8 cents.</p>
+<pre class="hljs"><code><div>Input: N=8
+        Coins : 1, 5, 10
+Output: 2
+
+Explanation:
+1 way:
+      1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 8 cents.
+2 way:
+      1 + 1 + 1 + 5 = 8 cents.
+</div></code></pre>
+<p>All you’re doing is determining all of the ways you can come up with the denomination of 8 cents. Eight 1 cents added
+together is equal to 8 cents. Three 1 cent plus One 5 cents added is 8 cents. So there are a total of 2 ways given the
+list of coins 1, 5 and 10 to obtain 8 cents.<strong>Example 2</strong>: Suppose you are given the coins 1 cent, 5 cents, and 10 cents
+with N = 10 cents, what are the total number of combinations of the coins you can arrange to obtain 10 cents.</p>
+<pre class="hljs"><code><div>Input : N=10
+        Coins : 1, 5, 10
+Output : 4
+Explanation:
+1 way:
+   1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 = 10 cents.
+2 way:
+   1 + 1 + 1 + 1 + 1 + 5 = 10 cents.
+3 way:
+   5 + 5 = 10 cents.
+4 way:
+   10 cents = 10 cents.
+</div></code></pre>
+<p>Now that we know the problem statement and how to find the solution for smaller values, how would we determine the total
+number of combinations of coins that add to <strong>larger values</strong>? We write a program. How do we write the program to
+compute all of the ways to obtain larger values of N? simple we use <strong>dynamic programming</strong>. Remember the idea behind
+dynamic programming is to cut each part of the problem into smaller pieces. Similar to the example at the top of the
+page. If we don’t know the value of 4 _ 36 but know the value of 4 _ 35 (140), we can just add 4 to that value and get
+our answer for 4 * 36 which by the way is 144. Okay so we understand what we have to do, but how is a program going to
+determine how many ways the list of coins can output N? Well lets look that this example.</p>
+<pre class="hljs"><code><div>N = 12
+Index of Array: [0, 1,  2]
+Array of coins: [1, 5, 10]
+</div></code></pre>
+<p>This is a array of coins, 1 cent, 5 cents, and 10 cents. The N is 12 cents. So we need to come up with a method that can
+use those coin values and determine the number of ways we can make 12 cents. Thinking dynamically, we need to figure out
+how to add to previous data. So what that means is we have to add to previous solutions instead of recalculating over
+the same values. Clearly, we have to iterate through the entire array of coins. We also need a way to see if a coin is
+larger than the N value. One way to do this is having an array that counts all the way up to the <strong>Nth value</strong>. So
+…<strong>Array of ways:</strong></p>
+<pre class="hljs"><code><div> [0, 0, 0 ..... Nth value] in our case it would be up to 12.
+</div></code></pre>
+<p>The reason for having an array up to the Nth value is so we can determine the number of ways the coins make up the
+values at the index of <strong>Array of ways</strong>. We do this because if we can determine a coin is larger than that value at the
+index then clearly we can’t use that coin to determine the combinations of the coins because that coin is larger than
+that value. This can be better understood with an example.Using the above numbers as example.</p>
+<pre class="hljs"><code><div>N = 12
+Index of Array of Coins:
+  [0, 1,  2]
+Array of coins:
+  [1, 5, 10]
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,   0,    0]
+</div></code></pre>
+<p>Before we start iterating we have to give a predefined value to our ways array. We must set the first element at index 0
+of the ways array to 1. This is because there is 1 way to make the number 0, using 0 coins. So if we started iterating
+through all the coins array and compare the elements to the Array of ways we will determine how many times a coin can be
+used to make the values at the index of the ways array.For example…First set ways[0] = 1.Lets compare the first coin, 1
+cent.</p>
+<pre class="hljs"><code><div>N = 12
+Index of Array of Coins:
+  [0, 1,  2]
+Array of coins:
+  [1, 5, 10]
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,   0,    0]
+
+Then compare coins[0] to all of the index's of ways array. If the value of the coin is
+less than or equal to the ways index, then ways[j-coins[i]]+ways[j] is the new value of
+ways[j].
+We do this because we are trying to break each part down into smaller pieces. You will
+see what is happening as you continue to read. So comparing each value of the ways index to the first coin, we get the following.
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,   1,    1]
+</div></code></pre>
+<p>Lets now compare the second coin, 5 cents.</p>
+<pre class="hljs"><code><div>N = 12
+Index of Array of Coins:
+  [0, 1,  2]
+Array of coins:
+  [1, 5, 10]
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,   1,    1]
+
+Comparing 5 cents to each of the index and making that same comparison, if the value of the coin is smaller than the value of the index at the ways array then
+ways[j-coins[i]]+ways[j] is the new value of ways[j]. Thus we get the following:
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  3,   3,    3]
+
+We are determining how many times the second coin goes into all of the values leading up the Nth coin.
+Why are we using all of the coins? It is to check our previous result dynamically and
+update our answer instead of recalculating all over again.
+For example, take the element at index 10 the answer is 3 so far. But how did we get 3?
+We know that the value of 10-5 is 5 so that is our j-coins[i] value, that is the difference of what needs to be made up to make the amount 10. So we look at index 5 of the ways array and see it has the value 2, for the same reason as above, there are so far 2 ways to obtain the value 5. So if there are 2 ways to obtain the value 5 then those ways plus the current number of ways is the new updated value of the TOTAL ways to get the value at index 10.
+</div></code></pre>
+<p>Lets now compare the third coin, 10 cents.</p>
+<pre class="hljs"><code><div>N = 12
+Index of Array of Coins:
+  [0, 1,  2]
+Array of coins:
+  [1, 5, 10]
+
+Comparing 10 cents to each of the index
+and making that same comparison, if the
+value of the coin is smaller than the value of the
+index at the ways array then
+ways[j-coins[i]]+ways[j] is the new value of ways[j].
+Thus we get the following.
+
+
+
+Index of Array of ways:
+  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10,  11,  12]
+Array of  ways:
+  [1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  4,   4,    4]
+
+So the answer to our example is ways[12] which is 4.
+</div></code></pre>
+<p>With all of the above in mind, lets have a look at the following program below.</p>
+<pre class="hljs"><code><div>&lt;script&gt;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNumberOfWays</span>(<span class="hljs-params">coins, n</span>) </span>{
+    <span class="hljs-comment">// create the ways array with a length of 1 plus the amount to stop overflow</span>
+    <span class="hljs-keyword">let</span> ways = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n + <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n + <span class="hljs-number">1</span>; i++) {
+        ways[i] = <span class="hljs-number">0</span>;
+    }
+
+		<span class="hljs-comment">// set the first way equal to 1. There is 1 way to make 0 with 0 coins</span>
+    ways[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// loop the coins array from the 0th index</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; coins.length; i++) {
+
+        <span class="hljs-comment">// make a comparison between the current coin value and each index value</span>
+				<span class="hljs-comment">// of the ways array</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; ways.length; j++) {
+            <span class="hljs-keyword">if</span> (coins[i] &lt;= j) {
+                <span class="hljs-comment">// update the ways array</span>
+                ways[j] += ways[(j - coins[i])];
+            }
+        }
+    }
+
+    <span class="hljs-comment">// return the value at the nth position of the ways array.</span>
+    <span class="hljs-keyword">return</span> ways[n]
+}
+
+&lt;<span class="hljs-regexp">/script&gt;
+</span></div></code></pre>
+
+</body>
+</html>
