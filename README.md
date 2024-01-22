@@ -33,13 +33,13 @@ A collection of course work and documentation from doing the [JavaScript Algorit
   * [Radix Sort](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/4.%20Sorting%20Algorithms/Radix%20Sort)
 
 - [Data Structures]()
-  * [Linked Lists]()
-  * [Stacks and Queues]()
-  * [Trees]()
-  * [Hash Tables]()
-  * [Graphs]()
+  * [Linked Lists](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/1.%20Linked%20Lists)
+  * [Stacks and Queues](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/2.%20Stacks%20and%20Queues)
+  * [Trees](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/3.%20Trees)
+  * [Hash Tables](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/4.%20Hash%20Tables)
+  * [Graphs](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/5.%20Data%20Structures/5.%20Graphs)
 
-- [Dijkstra Algorithm]()
+- [Dijkstra Algorithm](https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/tree/main/6.%20Dijkstra%20Algorithm)
  
 - [Dynamic Programming]()
 
@@ -49,5 +49,5 @@ Sorting Algorithms
 * [Toptal](https://www.toptal.com/developers/sorting-algorithms) - Sorting algorithms animations
 * [VisuAlgo](https://visualgo.net/en) - Visualising data structures and algorithms through animation
 
-Other:
+Other  
 [Big-O-Notation Cheatsheet](https://www.bigocheatsheet.com/)
