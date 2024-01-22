@@ -1,0 +1,820 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Dijkstra’s Algorithm</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="af0bdac4-faf0-431d-bbe1-eabdc5aae883" class="page sans"><header><h1 class="page-title">Dijkstra’s Algorithm</h1></header><div class="page-body"><h2 id="bc4bec92-468f-4dc2-bd7b-98114981152a" class="">Find the shortest Path between two Vertices in a Weighted Graph</h2><p id="a1d55eba-c48f-4038-8770-b5c8b959e15e" class="">
+</p><p id="00bb8b2c-2c74-4020-8243-ec3c2aaf145d" class="">Algorithm:</p><p id="a973faa1-e8e5-4892-af41-2558943cd9b8" class="">1)  Create an object, called distances. This object will keep track of the shortest paths from a start vertex to an end vertex. Set each key in <em>this</em> object equal to the keys in the adjacencyList object (see weightedGraph class), and the values set to Infinity. Set the value for the start vertex to “0” (zero).</p><p id="6c54839e-ced6-4ab0-b88b-a62d6693bcc0" class="">The object should look like this:</p><pre id="c8fe3763-1702-48e9-a071-cc98cefb6889" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity,
+		&#x27;C&#x27; = Infinity,
+		&#x27;D&#x27; = Infinity,
+		&#x27;E&#x27; = Infinity,
+		&#x27;F&#x27; = Infinity
+}</code></pre><p id="a3aff1de-f2bf-4034-acc2-926359b4053e" class="">2)  Create an object, called previous. Set each key equal to the keys in the adjacencyList with a value of null. This object will store the path of shortest distances from one vertex to another.</p><p id="fc4d3e43-c468-46f7-995b-2c3d57617730" class="">For example:</p><p id="88f635cc-89e0-425d-abec-4dfcace4bdcf" class="">In the object below, the “shortest path” to “F” is through “D”. The “shortest path” to “D” is through “C”. The “shortest path” to “C” is through “A”. Thus, the “shortest path” from A to F will be as follows:</p><p id="71baaf7d-3d20-4a85-88ea-5893d57ad913" class="">D → C → A or A → C → D </p><pre id="816db5ac-7bad-4656-8831-17a74b3ddc3c" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = A,
+		&#x27;C&#x27; = A,
+		&#x27;D&#x27; = C,
+		&#x27;E&#x27; = F,
+		&#x27;F&#x27; = D
+}</code></pre><p id="c90e2877-83c8-491c-b3de-cde55ccfddac" class="">The initial object should be initialised like this:</p><pre id="ac8ac651-f243-45dd-992d-c7a39e613b38" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = null,
+		&#x27;C&#x27; = null,
+		&#x27;D&#x27; = null,
+		&#x27;E&#x27; = null,
+		&#x27;F&#x27; = null
+}</code></pre><p id="17647afd-dac5-46a8-9d83-a67bc35ada6d" class="">3)  Add each vertex with a priority of Infinity to the priority queue, except the start vertex, which should have a priority of 0.</p><p id="7740f9b4-4fd6-4f42-95fa-221415dd1f0a" class="">4)  Create an object, called visited, that stores the vertices we visit so that these vertices aren&#x27;t visited again needlessly<span style="border-bottom:0.05em solid"><em>.</em></span></p><p id="54b28c8b-16c0-4235-a0ef-4187a74a0f7c" class="">5)  Start a loop for as long as there is something in the priority queue:</p><p id="014ce51b-9002-4a87-ab44-b8a30aa2d2e9" class="">5.1)  Dequeue a vertex, called current, from the priority queue. This is the vertex that we are currently &quot;visiting&quot;.</p><p id="fabc0595-7fb4-47ce-921a-5899bd45a04c" class="">5.2)  Check if the current vertex is in the visited object.<div class="indented"><p id="02a19c75-496c-4a96-bdf4-26735b21ab87" class="">  - If yes, continue the loop so that it jumps to the next iteration.</p><p id="675f8c68-4a9c-4248-a894-581d5527b8ac" class="">  - If no, store the current vertex in the visited object.</p></div></p><p id="b59b2705-f038-4e70-911e-2d39c3b44248" class="">5.3)  If the current vertex is equal to the end vertex - build the path and end the loop.</p><p id="3f2df96d-dd9c-47b6-9469-5df72c866f88" class="">5.4)  Otherwise, loop through each value in the adjacencyList (the neighbours) at the current vertex.</p><p id="623fcf3b-3857-4676-a5d8-8b206a24a1b9" class="">5.4.1)  Calculate the total weight/newDistance from the start to the neighbour.</p><p id="50cdf2ed-caf7-4300-b763-afa5c7f722fa" class="">5.4.2)  If the new distance is less than the distance stored in our &quot;distances&quot; object:<div class="indented"><p id="ba4667d0-c5c8-4ec9-91c1-58257121c315" class="">     - update the distances object with the new distance.</p><p id="6c9db84c-70c2-46f1-99c2-b402025cb944" class="">     - update the &quot;previous&quot; object to contain the current vertex (how did we get to the neighbour?).</p><p id="11eab9b6-5b34-467a-9961-c78f839c4296" class="">     - enqueue the vertex with the total new distance from the start node.</p></div></p><p id="8fbb1f74-838e-49af-b3d0-b0c29e6404f5" class="">6) Return the shortest path.</p><p id="3b7d23cf-389d-46a8-ad91-864df42d376d" class="">
+</p><hr id="36e6076d-e6dd-4a92-ad03-3f3fda71204b"/><p id="f4377214-11ba-4e45-bb60-1779baac32a4" class="">Example:</p><p id="5304cabf-99ff-42c9-b963-e851fea92dc9" class="">
+</p><p id="d24c50bf-c49a-411d-8681-470ff4924b50" class="">Find the shortest path from ‘A’</p><p id="4688a0c5-32d0-46ef-8d3e-4b8cc2feb1b6" class="">
+</p><figure id="90638fc2-6197-4ab5-8d53-2c37e0c0c145" class="image" style="text-align:left"><a href="./Dijkstra’s Algorithm_weighted graph.png"><img style="width:294px" src="./Dijkstra’s Algorithm_weighted graph.png"/></a></figure><p id="8f33c0be-58c6-47af-8fb2-34441650ace2" class="">
+</p><p id="484c0d07-e458-4027-97fd-344462cba11b" class="">Start vertex: A</p><p id="bdd8dd95-1884-4f71-bba6-70b600302381" class="">
+</p><p id="7d3ba8d7-4816-4be1-a33e-caf80c064796" class="">Visting ‘A’</p><p id="b633f127-3ba6-4e88-8506-d48d4e9acf25" class="">We want the shortest path from ‘A’ to any other vertex in the graph, so ‘A’ is the first vertex we are visiting. </p><p id="b659225e-08f2-4627-a230-8482d32b3c8e" class="">Step 1</p><p id="16d8f600-a65e-4e4e-866e-344a720241ca" class="">Update the visited object to reflect the vertex ‘A’ have been visited. </p><pre id="2d6ae616-7ce1-4fe5-a995-cf05ee1418ce" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true
+}</code></pre><p id="158fc3c0-767b-4b32-a383-6c9e233b2fd7" class="">Step 2</p><p id="1cfbab2c-581f-4719-96ef-7f8101f35348" class="">Look at all of A’s neighbours. </p><p id="d690544e-4932-41b7-ae41-fd592d497f15" class="">Update the shortest path (distance) from A to each of it’s neighbours: Add the sum of the current and previous costs and update the distance with the sum of the costs, if the sum is smaller than the current value stored.</p><pre id="948c8aab-6eca-4032-b68b-4d8dc2aef688" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity,
+		&#x27;E&#x27; = Infinity,
+		&#x27;F&#x27; = Infinity
+}</code></pre><p id="37483d3d-c15a-4383-8d24-c45166046a54" class="">Step 3</p><p id="c1ba5c0c-1372-44b4-b389-1b0b335a695a" class="">Then, if the shortest path (distance) was updated above, update the previous object. </p><pre id="c307d281-a499-4917-9d29-874af9217bfb" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = A,
+		&#x27;C&#x27; = A,
+		&#x27;D&#x27; = null,
+		&#x27;E&#x27; = null,
+		&#x27;F&#x27; = null
+}</code></pre><p id="473375c7-8c61-4a4a-83e7-38827062291a" class="">Step 4</p><p id="56d92cd8-225c-4385-94ae-59a427a3d9fb" class="">Next, we need to decide which neighbour to visit.
+There are two deciding factors:
+1) We must visit the neighbour with the smallest cost (see the distances object) first. In our code, we use a min-binary heap to calculate the next vertex according to it’s cost.
+2) We must visit a neighbour which we have not yet visited.</p><p id="b2aa8b58-000b-49f0-b5d5-4ffe6e12ab94" class="">And so, the neighbour which we will choose to visit, is C. </p><p id="74fd58ae-8d17-40cb-9921-565675fe2c66" class="">
+</p><p id="93cf078c-5554-49d2-ba07-49877fe6e16c" class="">Visiting ‘C’</p><p id="10907ecf-c1b8-45bb-93a4-1a6fe079da69" class="">Update the visited object to reflect the vertex ‘C’ have been visited.</p><pre id="d15b3ed2-9845-437b-934c-f13f115d1d22" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true,
+	&#x27;C&#x27; = true
+}</code></pre><p id="50d6143a-dd2a-4baf-ade6-fa62b129dc91" class="">Look at all of C’s neighbours. </p><p id="fabc8c5c-27fe-49a9-a180-b070f1c26ba8" class="">Update the shortest path (distance) from C to each of it’s neighbours. Remember that we are adding the current and previous costs.</p><pre id="ec715d58-d188-47f9-b537-57d29d736795" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity, 4 // 2 + 2
+		&#x27;E&#x27; = Infinity,
+		&#x27;F&#x27; = Infinity, 6 // 2 + 4
+}</code></pre><p id="e155db40-f342-406b-b66c-d76e58c32a85" class=""> Update the previous object if applicable.</p><pre id="f02a0ead-a8f5-43c5-a271-bfbb6f43b40a" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = A,
+		&#x27;C&#x27; = A,
+		&#x27;D&#x27; = C,
+		&#x27;E&#x27; = null,
+		&#x27;F&#x27; = C
+}</code></pre><p id="99c71b3a-cbfa-4534-9ad4-ddab01da073f" class="">
+</p><p id="9086eee6-889e-40e9-9e2e-68e5861068b4" class="">Visiting ‘B’</p><pre id="5049be81-5af6-4723-9900-a83f1f98343e" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true,
+	&#x27;C&#x27; = true
+	&#x27;B&#x27; = true
+}</code></pre><pre id="dd68022f-1e68-42d4-89a3-e77232922e6e" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity, 4
+		&#x27;E&#x27; = Infinity, 7 // 4 + 3
+		&#x27;F&#x27; = Infinity, 6
+}</code></pre><pre id="545fb8e1-ac2c-4663-9394-b8f87057b340" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = null, A,
+		&#x27;C&#x27; = null, A,
+		&#x27;D&#x27; = null, C,
+		&#x27;E&#x27; = null, B,
+		&#x27;F&#x27; = null, C
+}</code></pre><p id="cc45330c-5283-4952-9f5f-b6e5895238d0" class="">
+</p><p id="ebef83f5-8f51-4dc4-946d-8a1389b64b1d" class="">Visiting ‘D’</p><pre id="e01cff9f-1f64-4f78-8142-80e104cc0b08" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true,
+	&#x27;C&#x27; = true,
+	&#x27;B&#x27; = true,
+	&#x27;D&#x27; = true
+}</code></pre><pre id="d7fea29d-f220-41d1-bcb0-6dab3428cf9d" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity, 4 // does not change because the other costs are larger
+		&#x27;E&#x27; = Infinity, 7 
+		&#x27;F&#x27; = Infinity, 6, 5 // 4 + 1
+}</code></pre><pre id="2c0a83c1-2593-466d-ba1f-33f8aa189369" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = null, A,
+		&#x27;C&#x27; = null, A,
+		&#x27;D&#x27; = null, C,
+		&#x27;E&#x27; = null, B,
+		&#x27;F&#x27; = null, C, D // shortest path changed
+}</code></pre><p id="170cc899-21a4-43fc-ad87-22e56f6471f7" class="">
+</p><p id="0b824221-3993-48aa-be86-8890f6939d90" class="">Visiting ‘F’</p><pre id="f0143ac1-9e88-4048-a7b3-6754dc5fddaf" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true,
+	&#x27;C&#x27; = true,
+	&#x27;B&#x27; = true,
+	&#x27;D&#x27; = true,
+	&#x27;F&#x27; = true
+}</code></pre><pre id="2df31975-b27e-401b-95f0-1a1aa4b731d6" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity, 4
+		&#x27;E&#x27; = Infinity, 7, 6 // 5 + 1
+		&#x27;F&#x27; = Infinity, 6, 5
+}</code></pre><pre id="fab6c380-ec10-4797-bc93-4165b486d995" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = null, A,
+		&#x27;C&#x27; = null, A,
+		&#x27;D&#x27; = null, C,
+		&#x27;E&#x27; = null, B, F // shortest path changed
+		&#x27;F&#x27; = null, C, D
+}</code></pre><p id="f1dc11e6-34c4-47c7-a903-762ea8a0be1d" class="">
+</p><p id="d3ebb965-7703-46eb-9284-19560354c7df" class="">Visiting ‘E’</p><pre id="c120f3b4-fa52-4595-b05c-4bfa7a58ec0f" class="code code-wrap"><code>const visited = {
+	&#x27;A&#x27; = true,
+	&#x27;C&#x27; = true,
+	&#x27;B&#x27; = true,
+	&#x27;D&#x27; = true,
+	&#x27;F&#x27; = true,
+	&#x27;E&#x27; = true
+}</code></pre><pre id="b79a4444-951f-499e-9a79-18acaa1836b7" class="code code-wrap"><code>const distances = {
+    &#x27;A&#x27; = 0,
+		&#x27;B&#x27; = Infinity, 4,
+		&#x27;C&#x27; = Infinity, 2,
+		&#x27;D&#x27; = Infinity, 4
+		&#x27;E&#x27; = Infinity, 7, 6
+		&#x27;F&#x27; = Infinity, 6, 5
+}</code></pre><pre id="0b70e038-fb37-412f-9488-0d2d74d68da8" class="code code-wrap"><code>const previous = {
+    &#x27;A&#x27; = null,
+		&#x27;B&#x27; = null, A,
+		&#x27;C&#x27; = null, A,
+		&#x27;D&#x27; = null, C,
+		&#x27;E&#x27; = null, B, F
+		&#x27;F&#x27; = null, C, D
+}</code></pre><p id="5a2ae00d-c5ee-4c2b-8e7f-369cacc81bbd" class="">
+</p><p id="8a9a7785-b58b-418e-ae20-b883d6dc3326" class="">All vertices have been visited and we can track the shortest path from ‘A’ to any other vertex in the graph.</p><p id="7c297a75-d2f8-4904-9499-40fb8fae6e7d" class="">The shortest path from A to F:
+D → C → A</p><p id="1dfbfec7-b04a-46e0-a816-c6b9fd22ef61" class="">The shortest path from A to E:
+F → D → C → A</p><p id="2cd47d45-cecc-4ebe-b312-863dd912e3c9" class="">The shortest path from A to D:
+C → A</p><p id="706947b6-9374-4ed7-8a9a-b3b417510d18" class="">etc.</p><p id="d4030b3d-f1f1-42c8-9325-f7b01c8dac97" class="">
+</p></div></article></body></html>
