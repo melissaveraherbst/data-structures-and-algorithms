@@ -1,0 +1,5 @@
+Need to know how to implement a max-heap or min-heap data structure in order to grasp the code for Priority Queues.
+
+Binary Heap code can be found in the Trees section of Data Structures.
+
+For code on heaps, refer to \Documents\Courses\Udemy\JavaScript Algorithms and Data Structures Masterclass_Colt Steele_Udemy\Data Structures\Trees\Binary Heaps

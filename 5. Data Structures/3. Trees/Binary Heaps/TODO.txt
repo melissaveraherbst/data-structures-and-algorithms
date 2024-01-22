@@ -1,0 +1,7 @@
+IMPLEMENT THE MERGE AND MELD METHODS FOR THE HEAP DATA STRUCTURE
+
+merge(union): joining two heaps to form a valid new heap containing all the elements of both, preserving the original heaps.
+
+meld: joining two heaps to form a valid new heap containing all the elements of both, destroying the original heaps.
+
+NOTE: MERGE AND MELD WAS NOT HANDLED IN THE COURSE
