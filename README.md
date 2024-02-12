@@ -1,6 +1,10 @@
 <div align=center>
 
-<img src="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/f7d04815-2c76-4afb-b5c6-db05d2214831" width=200px />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/cbc236ed-7bdd-4ce9-9702-2d6f809c36b5">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/09553369-5445-4ab8-bf86-3c71de4c39d8">
+  <img alt="shows a black logo in light color mode and a white one in dark color mode" width=200px src="">
+</picture>
 
 # JavaScript Data Structures and Algorithms
 
