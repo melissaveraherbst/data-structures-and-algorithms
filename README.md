@@ -6,7 +6,7 @@
   
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/361c0907-d3e8-4c41-94c4-0d19acb482c8">
   
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/6b845cb9-3d00-474a-80cf-e0e9a69546d0" width=40% />
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://github.com/melissaveraherbst/javascript-data-structures-and-algorithms/assets/84316275/6b845cb9-3d00-474a-80cf-e0e9a69546d0" width=30% />
 
 </picture>
 
